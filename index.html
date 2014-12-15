@@ -1,0 +1,31 @@
+<html>
+<head>
+  <script type="text/javascript" src="./lib/utils.js"></script>
+  <script type="text/javascript" src="./lib/movingObject.js"></script>
+  <script type="text/javascript" src="./lib/asteroid.js"></script>
+  <script type="text/javascript" src="./lib/game.js"></script>
+  <script type="text/javascript" src="./lib/bullet.js"></script>
+  <script type="text/javascript" src="./lib/gameView.js"></script>
+  <script type="text/javascript" src="./lib/ship.js"></script>
+  <script type="text/javascript" src="./lib/keymaster.js"></script>
+</head>
+  <body>
+    <canvas id="game-canvas"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById('game-canvas');
+      var ctx = canvas.getContext('2d');
+      var game = new Asteroids.Game();
+      var gameView = new Asteroids.GameView(game, ctx);
+      gameView.start();
+      canvas.width = game.dim_x;
+      canvas.height = game.dim_y;
+    </script>
+	  <style>
+	  body  {
+	      background-image: url("lib/background.png");
+		  background-size: 800px 800px;
+		  background-repeat: no-repeat;
+	  }
+	  </style>
+  </body>
+</html>
