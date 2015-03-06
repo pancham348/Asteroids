@@ -1,5 +1,6 @@
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="./lib/utils.js"></script>
   <script type="text/javascript" src="./lib/movingObject.js"></script>
   <script type="text/javascript" src="./lib/asteroid.js"></script>
@@ -10,13 +11,27 @@
   <script type="text/javascript" src="./lib/keymaster.js"></script>
 </head>
   <body>
+	<div id="instructions">
+	<h3>Instructions</h3>
+	<p>Press space bar to shoot, UP or DOWN to move and LEFT and RIGHT to rotate the ship.
+		Hit play to start!</p>
+	</div>
+	<button id="play-button" style='height:240px, width:470px'>Play</button>
+	</div>
     <canvas id="game-canvas"></canvas>
     <script type="text/javascript">
       var canvas = document.getElementById('game-canvas');
       var ctx = canvas.getContext('2d');
       var game = new Asteroids.Game();
       var gameView = new Asteroids.GameView(game, ctx);
-      gameView.start();
+	  $("#play-button").click(function(){
+	  	gameView.start();
+		 $("#play-button").remove()
+	  });
+	  if (game.checkGameOver()) {
+		  $("#game-canvas").append("<button>Start Over?</button>")
+	  }
+
       canvas.width = game.dim_x;
       canvas.height = game.dim_y;
     </script>
@@ -26,6 +41,22 @@
 		  background-size: 1000px 800px;
 		  background-repeat: no-repeat;
 	  }
+	  
+	  #play-button{
+		  position: fixed;
+		      top: 350px;
+		      left: 420px;
+			  height: 50px;
+			  width: 100px;
+	  }
+	  
+	  #instructions{
+		  position: fixed;
+		      top: 20px;
+		      left: 1050px;
+			  right: 50px;
+	  }
+	  
 	  </style>
   </body>
 </html>
